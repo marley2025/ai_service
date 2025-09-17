@@ -1,0 +1,19 @@
+services:
+  api:
+    build: .
+    image: ai-quoting:latest
+    container_name: ai-quoting
+    ports:
+      - "8080:8080"
+    # load env if present
+    env_file:
+      - .env
+    environment:
+      # You can override any setting here or in .env
+      - AIQ_ENVIRONMENT=prod
+    restart: unless-stopped
+    # For local dev with live reload, uncomment volumes and command:
+    # volumes:
+    #   - ./ai_quoting:/app/ai_quoting:rw
+    #   - ./.env:/app/.env:ro
+    # command: ["uvicorn", "ai_quoting.app:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
